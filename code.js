@@ -1,3 +1,4 @@
+alert("Enjoy the game");
 const playerOne = 'X';
 const playerTwo = 'O';
 
