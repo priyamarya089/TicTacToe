@@ -1,10 +1,10 @@
-body{
+body {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.board{
+.board {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
@@ -14,7 +14,7 @@ body{
     border: 1px solid black;
 }
 
-.square{
+.square {
     width: 200px;
     height: 200px;
     border: 1px solid black;
@@ -25,7 +25,7 @@ body{
     font-size: 6em;
 }
 
-.square:hover{
+.square:hover {
     cursor: pointer;
     background-color: rgb(158, 191, 206);
 }
