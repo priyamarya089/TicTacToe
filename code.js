@@ -1,12 +1,42 @@
-class TicTacToeGame {
-    drawBoard(){
-        document.body.innerHTML = "";
-        let gameBoard =document.createElement('div');
-        gameBoard.id='gameBoard';
-        gameBoard.classList.add('board');
+const playerOne = 'X';
+const playerTwo = 'O';
 
-        this.board.forEach((square , index) => {
-            let sqareElement  = document.createElement('div');
+class TicTacToeGame {
+    updateBoard(){
+        let gameBoard = document.getElementById('gameBoard');
+        let squareElements = gameBoard.childNodes;
+        console.log(squareElements);
+        squareElements.forEach((element , index )=>{
+            if(element.innerText != this.board[index]){
+                element.innerText = this.board[index];
+            }
+        });
+    }
+
+
+    handleclick(event) {
+        let clickedId = event.target.id;
+        if (this.board[clickedId] == "") {
+            this.board[clickedId] = this.currentPlayer;
+            if (this.currentPlayer == playerOne) {
+                this.currentPlayer = playerTwo;
+            } else {
+                this.currentPlayer = playerOne;
+            }
+            this.updateBoard();
+        }
+    }
+
+
+    drawBoard() {
+        document.body.innerHTML = "";
+        let gameBoard = document.createElement('div');
+        gameBoard.id = 'gameBoard';
+        gameBoard.classList.add('board');
+        gameBoard.addEventListener('click', this.handleclick.bind(this));
+
+        this.board.forEach((square, index) => {
+            let sqareElement = document.createElement('div');
             sqareElement.id = index;
             sqareElement.classList.add('square');
             gameBoard.appendChild(sqareElement);
@@ -17,6 +47,7 @@ class TicTacToeGame {
 
     start() {
         this.board = ["", "", "", "", "", "", "", "", ""];
+        this.currentPlayer = playerOne;
         this.drawBoard();
     }
 }
