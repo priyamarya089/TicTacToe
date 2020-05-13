@@ -34,12 +34,20 @@ class TicTacToeGame {
     }
 
 
-    handleclick(event) {
+    handleClick(event) {
         let clickedId = event.target.id;
         if (this.board[clickedId] == "") {
             this.board[clickedId] = this.currentPlayer;
             this.updateBoard();
             if (!this.checkGameWinner()) {
+                var flag=true;
+                for(var i=0;i<9;i++){
+                    if(this.board[i]=="")flag=false;
+                }
+                if(flag){
+                    alert('Draw');
+                    this.start();
+                }
                 if (this.currentPlayer == playerOne) {
                     this.currentPlayer = playerTwo;
                 } else {
@@ -47,7 +55,7 @@ class TicTacToeGame {
                 }
             } else {
                 alert('Player ' + this.currentPlayer + ' is the winner');
-                //Resart the game
+                //Restart the game
                 this.start();
             }
         }
@@ -59,13 +67,13 @@ class TicTacToeGame {
         let gameBoard = document.createElement('div');
         gameBoard.id = 'gameBoard';
         gameBoard.classList.add('board');
-        gameBoard.addEventListener('click', this.handleclick.bind(this));
+        gameBoard.addEventListener('click', this.handleClick.bind(this));
 
         this.board.forEach((square, index) => {
-            let sqareElement = document.createElement('div');
-            sqareElement.id = index;
-            sqareElement.classList.add('square');
-            gameBoard.appendChild(sqareElement);
+            let squareElement = document.createElement('div');
+            squareElement.id = index;
+            squareElement.classList.add('square');
+            gameBoard.appendChild(squareElement);
         })
 
         document.body.appendChild(gameBoard);
